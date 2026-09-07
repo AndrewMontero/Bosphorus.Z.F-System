@@ -1,0 +1,35 @@
+# Python
+__pycache__/
+*.py[cod]
+*.sqlite3
+.Python
+env/
+venv/
+.venv/
+
+# Django
+*.log
+media/
+staticfiles/
+
+# Entorno local (contiene contraseñas de desarrollo, nunca se sube)
+.env
+
+# Docker
+db_data/
+
+# Frontend (a futuro)
+node_modules/
+dist/
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# SO
+.DS_Store
+Thumbs.db
+
+# Visual Studio (estado local, no se comparte)
+.vs/
