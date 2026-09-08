@@ -34,9 +34,13 @@ class Command(BaseCommand):
             email=email,
             password=opciones["password"],
             nombre_completo=opciones["nombre"],
-            # is_staff da acceso al admin de Django (/admin/), que por ahora
-            # hace de panel de superadministrador hasta que exista el propio.
+            # El admin de Django tiene su PROPIO sistema de permisos
+            # (auth_permission), separado de nuestros Rol/Permiso. is_staff
+            # solo abre la puerta; sin is_superuser el admin se ve vacio.
+            # Este usuario es el que arranca el sistema, asi que lleva los dos
+            # hasta que exista el panel propio en Vue.
             is_staff=True,
+            is_superuser=True,
         )
         Asignacion.objects.create(usuario=usuario, rol=rol, asignado_por=usuario)
 
