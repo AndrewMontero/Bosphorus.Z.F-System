@@ -1,0 +1,8 @@
+# Fuerza LF en el repo sin importar el core.autocrlf de cada maquina.
+# Sin esto, Windows con autocrlf=true reescribe los scripts de shell con
+# CRLF al hacer checkout, y "exec ./script.sh" falla dentro de Linux
+# (busca literalmente el interprete "/bin/sh\r", que no existe).
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+Dockerfile text eol=lf
