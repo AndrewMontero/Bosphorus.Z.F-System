@@ -11,4 +11,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("api/salud/", salud),
     path("api/auth/", include("identidad.urls")),
+    path("api/parqueo/", include("parqueo.urls")),
 ]

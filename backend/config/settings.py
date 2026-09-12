@@ -21,6 +21,7 @@ INSTALLED_APPS = [
     "identidad",
     "organizacion",
     "autorizacion",
+    "parqueo",
 ]
 
 MIDDLEWARE = [
