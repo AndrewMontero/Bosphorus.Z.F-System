@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -18,6 +19,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "rest_framework",
     "identidad",
+    "organizacion",
+    "autorizacion",
+    "parqueo",
 ]
 
 MIDDLEWARE = [
@@ -80,7 +84,22 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "identidad.authentication.JWTDesdeCookie",
+    ],
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+}
+
+# El token viaja en cookie httpOnly, nunca en el encabezado Authorization:
+# asi JavaScript no puede leerlo y un XSS no se lo puede robar.
+# Mismo patron que el ADR-006 de ARDI.
+JWT_COOKIE_ACCESS = "bzf_access"
+JWT_COOKIE_REFRESH = "bzf_refresh"
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "UPDATE_LAST_LOGIN": True,
 }
